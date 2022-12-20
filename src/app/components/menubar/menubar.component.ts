@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class MenubarComponent {
 
+  public acknowledge(): void {
+    console.log('menu item clicked');
+  }
+
 }
