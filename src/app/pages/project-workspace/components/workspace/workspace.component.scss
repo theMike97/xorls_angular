@@ -1,0 +1,11 @@
+:host ::ng-deep {
+    .workspace-tab-view {
+        .p-tabview {
+            height: 100%;
+        }
+        .p-tabview-panels {
+            height: 100%;
+            padding: 0;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+<div class="h-screen flex flex-col surface-ground">
+    <div id="primary-header" class="surface-overlay flex flex-col relative lg:static"
+        style="min-height: 80px;">
+        <span class="flex lg:flex-row lg:align-center pt-3 pl-3">
+            <p-button icon="pi pi-chevron-left" styleClass="p-button-text p-button-secondary text-2xl"></p-button>
+            <input type="text" id="projectName" class="text-2xl" pInputText [(ngModel)]="value"/>
+        </span>
+
+        <app-menubar></app-menubar>
+    </div>
+
+    <div class="flex flex-1 flex-row">
+        <app-left-panel></app-left-panel>
+        <app-workspace class="flex w-full h-full"></app-workspace>
+    </div>
+
+    <app-status-bar></app-status-bar>
+</div>

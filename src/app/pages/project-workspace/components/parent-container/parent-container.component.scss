@@ -1,0 +1,16 @@
+:host ::ng-deep {
+    #projectName {
+        outline: none;
+        border-radius: 0;
+        border: 1px hidden;
+        border-bottom: 1px solid var(--surface-0);
+        box-shadow: none;
+        color: var(--text-color-secondary);
+        transition: 0.2s;
+    }
+
+    #projectName:focus {
+        border-color: var(--text-color);
+        color: var(--text-color);
+    }
+}

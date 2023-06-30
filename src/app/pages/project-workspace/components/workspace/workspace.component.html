@@ -1,0 +1,11 @@
+<p-tabView styleClass="workspace-tab-view" class="w-full">
+    <p-tabPanel header="{{ workspace.name }}" class="w-full h-full" [closable]="true">
+        <app-diagram-workspace-container *ngIf="workspaceType === WorkspaceType.DIAGRAM"></app-diagram-workspace-container>
+        <!-- <app-code-workspace-container *ngIf="workspaceType === WorkspaceType.CODE"></app-code-workspace-container> -->
+    </p-tabPanel>
+    <p-tabPanel header="{{ workspace.name }}" class="w-full h-full" [closable]="true">
+        <p>workspace 2</p>
+        <!-- <app-diagram-workspace-container *ngIf="workspaceType === WorkspaceType.DIAGRAM"></app-diagram-workspace-container> -->
+        <!-- <app-code-workspace-container *ngIf="workspaceType === WorkspaceType.CODE"></app-code-workspace-container> -->
+    </p-tabPanel>
+</p-tabView>

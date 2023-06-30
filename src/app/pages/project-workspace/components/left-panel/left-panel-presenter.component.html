@@ -1,0 +1,58 @@
+<p-tabView styleClass="orientation-left flex h-full">
+    <p-tabPanel>
+        <ng-template pTemplate="header">
+            <i class="pi pi-copy text-xl" pTooltip="Explorer" [showDelay]="750"></i>
+        </ng-template>
+        <p-tree class="w-full md:w-30rem filetree" [value]="files"></p-tree>
+    </p-tabPanel>
+    <p-tabPanel>
+        <ng-template pTemplate="header">
+            <i class="pi pi-search text-xl" pTooltip="Search" [showDelay]="750"></i>
+        </ng-template>
+        <div class="p-3">
+            <!-- <div class="flex flex-row gap-2">
+                <label htmlFor="find" class="flex items-center">Find</label>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input type="text" id="find" pInputText [(ngModel)]="value" />
+                </span>
+            </div> -->
+            <span class="p-input-icon-left w-full">
+                <i class="pi pi-search"></i>
+                <input type="text" class="w-full" id="find" pInputText placeholder="Find" [(ngModel)]="findStr"/>
+            </span>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel>
+        <ng-template pTemplate="header">
+            <i class="pi pi-box text-xl" pTooltip="Components" [showDelay]="750"></i>
+        </ng-template>
+        <div class="flex flex-col h-full justify-between">
+            <div class="overflow-auto flex-1">
+                <p-accordion [multiple]="true">
+                    <p-accordionTab header="Gates">
+                        <p>itemized gates go here</p>
+                    </p-accordionTab>
+                    <p-accordionTab header="IO">
+                        <p>itemized IO goes here</p>
+                    </p-accordionTab>
+                </p-accordion>
+            </div>
+            <div class="overflow-auto" style="max-height: 50%;">
+                <p-accordion>
+                    <p-accordionTab header="Properties">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </p-accordionTab>
+                </p-accordion> 
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel>
+        <ng-template pTemplate="header">
+            <i class="pi pi-cog text-xl" pTooltip="Settings" [showDelay]="750"></i>
+        </ng-template>
+        <p>application settings</p>
+    </p-tabPanel>  
+</p-tabView>
