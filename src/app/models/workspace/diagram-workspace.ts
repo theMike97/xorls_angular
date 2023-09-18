@@ -1,5 +1,5 @@
 import { Grid } from "../grid";
-import { Workspace } from "./workspace";
+import { Workspace, WorkspaceType } from "./workspace";
 
 export class DiagramWorkspace implements Workspace {
     public name: string;
@@ -10,5 +10,9 @@ export class DiagramWorkspace implements Workspace {
         if (name) this.name = name;
         else this.name = 'Untitled';
         this.grid = new Grid();
+    }
+
+    public is(type: WorkspaceType): boolean {
+        return type === WorkspaceType.DIAGRAM;
     }
 }

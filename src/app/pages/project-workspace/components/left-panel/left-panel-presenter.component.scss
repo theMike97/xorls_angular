@@ -18,7 +18,6 @@
 
         .p-tabview-nav li .p-tabview-nav-link {
             border: none;
-            border-radius: 0;
         }
 
         .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
@@ -32,6 +31,7 @@
         .p-tabview-panels {
             padding: 0;
             width: 350px;
+            overflow: scroll;
         }
 
         .p-tabview-panel {

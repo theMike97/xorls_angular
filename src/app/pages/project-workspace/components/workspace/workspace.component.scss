@@ -1,10 +1,14 @@
+$workspace-tab-height: 42px;
+
 :host ::ng-deep {
     .workspace-tab-view {
+        height: 100%;
+
         .p-tabview {
             height: 100%;
         }
         .p-tabview-panels {
-            height: 100%;
+            height: calc(100% - $workspace-tab-height);
             padding: 0;
         }
     }
