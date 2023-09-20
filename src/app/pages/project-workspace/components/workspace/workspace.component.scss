@@ -10,6 +10,7 @@ $workspace-tab-height: 42px;
         .p-tabview-panels {
             height: calc(100% - $workspace-tab-height);
             padding: 0;
+            overflow: scroll;
         }
     }
 }
