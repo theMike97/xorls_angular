@@ -1,11 +1,9 @@
 import { Workspace, WorkspaceType } from "./workspace";
 
-export class CodeWorkspace implements Workspace {
-    public name: string;
+export class CodeWorkspace extends Workspace {
     
     public constructor(name?: string) {
-        if (name) this.name = name;
-        else this.name = 'Untitled';
+        super(name);
     }
 
     public is(type: WorkspaceType): boolean {

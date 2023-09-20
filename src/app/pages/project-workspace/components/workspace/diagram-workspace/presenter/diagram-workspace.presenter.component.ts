@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { DiagramWorkspace } from 'src/app/models/workspace/diagram-workspace';
 
 @Component({
@@ -8,20 +8,19 @@ import { DiagramWorkspace } from 'src/app/models/workspace/diagram-workspace';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DiagramWorkspacePresenterComponent implements AfterViewInit {
+
+    @Input() height: number = 0;
+    @Input() width: number = 0;
+    @Input() workspace: DiagramWorkspace;
     
     @ViewChild('diagramWorkspace')
     public canvas: ElementRef<HTMLCanvasElement>;
     public context: CanvasRenderingContext2D;
 
-    workspace: DiagramWorkspace;
-
-    public constructor() {
-        this.workspace = new DiagramWorkspace();
-    }
+    public constructor() {}
 
     ngAfterViewInit(): void {
         this.context = this.canvas.nativeElement.getContext('2d');
     }
-
 
 }

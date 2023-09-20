@@ -1,4 +1,12 @@
-import { createFeatureSelector } from "@ngrx/store";
+import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { ProjectWorkspaceState } from "./state";
 
-const getProjectWorkspaceState = createFeatureSelector<ProjectWorkspaceState>('app');
+const getProjectWorkspaceState = createFeatureSelector<ProjectWorkspaceState>('projectWorkspace');
+
+export const workspaceViewportHeight = createSelector(getProjectWorkspaceState, (state): number =>
+    state.viewportHeight
+);
+
+export const workspaceViewportWidth = createSelector(getProjectWorkspaceState, (state): number =>
+    state.viewportWidth
+);
