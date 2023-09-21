@@ -1,4 +1,4 @@
 export enum GridStyle {
-    LINES,
-    DOTS
+    LINES = 'Lines',
+    DOTS = 'Dots'
 }

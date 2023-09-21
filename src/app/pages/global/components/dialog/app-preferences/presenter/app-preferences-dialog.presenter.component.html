@@ -1,0 +1,48 @@
+<!-- App Preferences Dialog -->
+<p-dialog header="Application Preferences" [(visible)]="DialogType.APP_PREFERENCES === dialogInfo.type" [draggable]="false" [closable]="false" [maximizable]="true" [style]="{ width: '75vw', height: '75vh' }" [resizable]="false">
+    <div class="flex flex-row h-full w-full">
+        <div class="flex flex-col border-r" style="width: 225px">
+            <a class="preferences-nav-link" href="#general-preferences">General</a>
+            <a class="preferences-nav-link" href="#diagram-preferences">Diagram Workspace</a>
+            <a class="preferences-nav-link" href="#code-preferences">Code Workspace</a>
+        </div>
+        <form class="flex-1 overflow-y-scroll" [formGroup]="preferencesForm">
+            <p-divider id="general-preferences" align="left">
+                <div class="inline-flex align-items-center">
+                    <b>General</b>
+                </div>
+            </p-divider>
+            <div class="preferences-section">
+               general preferences here
+            </div>
+
+            <p-divider id="diagram-preferences" align="left">
+                <div class="inline-flex align-items-center">
+                    <b>Diagram Workspace</b>
+                </div>
+            </p-divider>
+            <div class="flex flex-col preferences-section">
+                <span>
+                    <label for="gridStyle">Grid style</label>
+                    <p-dropdown id="gridStyle" [options]="gridStyleOptions" formControlName="gridStyle"></p-dropdown>
+                </span>
+            </div>
+
+            <p-divider id="code-preferences" align="left">
+                <div class="inline-flex align-items-center">
+                    <b>Code Workspace</b>
+                </div>
+            </p-divider>
+            <div class="preferences-section">
+                <span>
+                    <label for="indentSpaces">Indentation spaces</label>
+                    <input id="indentSpaces" pInputText type="text" class="p-inputtext-sm" formControlName="indentSpaces"/>
+                </span>
+            </div>
+        </form>
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button (click)="applyPreferencesChanges()" [label]="dialogInfo.options.primary.text" styleClass="p-button-text"></p-button>
+        <p-button (click)="cancelPreferencesChanges()" [label]="dialogInfo.options.secondary.text" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>

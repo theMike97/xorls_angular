@@ -38,3 +38,4 @@ function setWorkspaceViewportWidth(state: ProjectWorkspaceState, viewportWidth: 
         viewportWidth
     }
 }
+//#endregion
