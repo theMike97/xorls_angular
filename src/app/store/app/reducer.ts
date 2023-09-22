@@ -4,7 +4,6 @@ import * as actions from './actions';
 import { DialogType } from "src/app/models/dialog";
 import { GridStyle } from "src/app/models/grid-style";
 import { ApplicationPreferences } from "src/app/models/app-preferences";
-import { appPreferences } from "./selectors";
 
 const initialState: AppState = {
     appPreferences: {

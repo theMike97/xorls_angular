@@ -1,10 +1,8 @@
-import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Action } from "@ngrx/store";
-import { MenuItem, TreeNode } from "primeng/api";
 import { ApplicationPreferences } from "src/app/models/app-preferences";
-import { Dialog, DialogOption, DialogType } from "src/app/models/dialog";
+import { Dialog, DialogType } from "src/app/models/dialog";
 import { GridStyle } from "src/app/models/grid-style";
 
 @Component({
@@ -32,10 +30,7 @@ export class AppPreferencesDialogPresenterComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {
-        this.preferencesForm = new FormGroup({
-            gridStyle: new FormControl(this.appPreferencesSnapshot.diagramWorkspaceSettings.gridStyle),
-            indentSpaces: new FormControl(this.appPreferencesSnapshot.codeWorkspaceSettings.indentSpaces)
-        });   
+        this.populatePreferencesFormWithSnapshotData();
     }
 
     public closeDialog(): void {
@@ -51,15 +46,19 @@ export class AppPreferencesDialogPresenterComponent implements OnInit {
             codeWorkspaceSettings: {
                 indentSpaces: this.preferencesForm.value.indentSpaces
             }
-        } as unknown as ApplicationPreferences);
+        } as ApplicationPreferences);
     }
 
     protected cancelPreferencesChanges(): void {
         this.preferencesChangesCancel.emit();
+        this.populatePreferencesFormWithSnapshotData();
     }
 
-    protected selectDialogOption(option: DialogOption): void {
-        this.execDialogOption.emit(option.action);
+    private populatePreferencesFormWithSnapshotData() {
+        this.preferencesForm = new FormGroup({
+            gridStyle: new FormControl(this.appPreferencesSnapshot.diagramWorkspaceSettings.gridStyle),
+            indentSpaces: new FormControl(this.appPreferencesSnapshot.codeWorkspaceSettings.indentSpaces)
+        });
     }
 
 }

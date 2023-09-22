@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { Action, ActionCreator, Store } from "@ngrx/store";
+import { Action, Store } from "@ngrx/store";
 import { AppState } from "src/app/store/app/state";
 import * as selectors from '../../../../../../store/app/selectors';
 import * as actions from '../../../../../../store/app/actions';
