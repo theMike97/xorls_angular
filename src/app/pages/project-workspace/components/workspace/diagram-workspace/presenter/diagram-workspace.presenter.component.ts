@@ -2,10 +2,10 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, V
 import { DiagramWorkspace } from 'src/app/models/workspace/diagram-workspace';
 
 @Component({
-  selector: 'app-diagram-workspace-presenter',
-  templateUrl: './diagram-workspace.presenter.component.html',
-  styleUrls: ['./diagram-workspace.presenter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-diagram-workspace-presenter',
+    templateUrl: './diagram-workspace.presenter.component.html',
+    styleUrls: ['./diagram-workspace.presenter.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DiagramWorkspacePresenterComponent implements AfterViewInit {
 
