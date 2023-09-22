@@ -1,0 +1,9 @@
+@import '../../../../../../_variables';
+
+
+:host ::ng-deep {
+    .ngs-code-editor {
+        display: block;
+        height: 100%;
+    }
+}

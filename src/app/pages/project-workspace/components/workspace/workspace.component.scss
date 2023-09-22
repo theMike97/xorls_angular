@@ -1,4 +1,4 @@
-$workspace-tab-height: 42px;
+@import '../../../../variables';
 
 :host ::ng-deep {
     .workspace-tab-view {
@@ -11,6 +11,9 @@ $workspace-tab-height: 42px;
             height: calc(100% - $workspace-tab-height);
             padding: 0;
             overflow: scroll;
+        }
+        .p-tabview-panel {
+            height: 100%;
         }
     }
 }

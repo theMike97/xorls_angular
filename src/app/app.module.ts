@@ -36,12 +36,17 @@ import { WorkspaceComponent } from './pages/project-workspace/components/workspa
 import { AppPreferencesDialogContainerComponent } from './pages/global/components/dialog/app-preferences/container/app-preferences-dialog.container.component';
 import { AppPreferencesDialogPresenterComponent } from './pages/global/components/dialog/app-preferences/presenter/app-preferences-dialog.presenter.component';
 import { CommonModule } from '@angular/common';
+import { CodeWorkspaceContainerComponent } from './pages/project-workspace/components/workspace/code-workspace/container/code-workspace.container.component';
+import { CodeWorkspacePresenterComponent } from './pages/project-workspace/components/workspace/code-workspace/presenter/code-workspace.presenter.component';
+import { CodeEditorModule } from '@ngstack/code-editor';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppPreferencesDialogContainerComponent,
     AppPreferencesDialogPresenterComponent,
+    CodeWorkspaceContainerComponent,
+    CodeWorkspacePresenterComponent,
     DiagramWorkspaceContainerComponent,
     DiagramWorkspacePresenterComponent,
     LeftPanelComponent,
@@ -58,6 +63,7 @@ import { CommonModule } from '@angular/common';
     BrowserModule,
     ButtonModule,
     CommonModule,
+    CodeEditorModule.forRoot(),
     DialogModule,
     DividerModule,
     DropdownModule,
