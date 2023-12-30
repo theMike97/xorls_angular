@@ -19,7 +19,6 @@ export class DiagramWorkspaceContainerComponent {
 
     public viewportHeight = this.store.select(selectors.workspaceViewportHeight);
     public viewportWidth = this.store.select(selectors.workspaceViewportWidth);
-
     public workspace: DiagramWorkspace;
 
     public constructor(private store: Store<ProjectWorkspaceState>) {

@@ -1,6 +1,6 @@
 <p-tabView styleClass="workspace-tab-view" class="w-full h-full">
     <p-tabPanel [header]="workspace.name" *ngFor="let workspace of workspaceTabs; let i = index" [selected]="i == 0" [closable]="true">
         <app-diagram-workspace-container *ngIf="this.workspace.is(WorkspaceType.DIAGRAM)"></app-diagram-workspace-container>
-        <!-- <app-code-workspace-container *ngIf="this.workspace.is(WorkspaceType.CODE)"></app-code-workspace-container> -->
+        <app-code-workspace-container *ngIf="this.workspace.is(WorkspaceType.CODE)"></app-code-workspace-container>
     </p-tabPanel>
 </p-tabView>

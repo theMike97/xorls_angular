@@ -21,6 +21,7 @@
     "@ngrx/effects": "^15.4.0",
     "@ngrx/store": "^15.0.0",
     "@ngrx/store-devtools": "^15.4.0",
+    "@ngstack/code-editor": "^5.1.0",
     "eslint": "^8.49.0",
     "primeicons": "^6.0.1",
     "primeng": "^15.4.1",

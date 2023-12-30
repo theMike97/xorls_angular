@@ -18,7 +18,7 @@ export class WorkspaceComponent implements AfterViewInit {
 
     protected workspaceTabs: Workspace[] = [
         workspaceFactory(WorkspaceType.DIAGRAM),
-        workspaceFactory(WorkspaceType.CODE)
+        workspaceFactory(WorkspaceType.CODE),
     ];
 
     // inject workspacetype into constructor after creating new file
