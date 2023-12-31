@@ -41,48 +41,48 @@ import { CodeWorkspacePresenterComponent } from './pages/project-workspace/compo
 import { CodeEditorModule } from '@ngstack/code-editor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AppPreferencesDialogContainerComponent,
-    AppPreferencesDialogPresenterComponent,
-    CodeWorkspaceContainerComponent,
-    CodeWorkspacePresenterComponent,
-    DiagramWorkspaceContainerComponent,
-    DiagramWorkspacePresenterComponent,
-    LeftPanelComponent,
-    MenubarContainerComponent,
-    MenubarPresenterComponent,
-    ParentContainerComponent,
-    StatusBarComponent,
-    WorkspaceComponent
-  ],
-  imports: [
-    AccordionModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    ButtonModule,
-    CommonModule,
-    CodeEditorModule.forRoot(),
-    DialogModule,
-    DividerModule,
-    DropdownModule,
-    FormsModule,
-    InputTextModule,
-    MenubarModule,
-    MenuModule,
-    ReactiveFormsModule,
-    TabViewModule,
-    ToolbarModule,
-    TooltipModule,
-    TreeModule,
-    EffectsModule.forRoot(effects),
-    StoreModule.forRoot(reducers, {
-      metaReducers
-    }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        AppPreferencesDialogContainerComponent,
+        AppPreferencesDialogPresenterComponent,
+        CodeWorkspaceContainerComponent,
+        CodeWorkspacePresenterComponent,
+        DiagramWorkspaceContainerComponent,
+        DiagramWorkspacePresenterComponent,
+        LeftPanelComponent,
+        MenubarContainerComponent,
+        MenubarPresenterComponent,
+        ParentContainerComponent,
+        StatusBarComponent,
+        WorkspaceComponent
+    ],
+    imports: [
+        AccordionModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        ButtonModule,
+        CommonModule,
+        CodeEditorModule.forRoot(),
+        DialogModule,
+        DividerModule,
+        DropdownModule,
+        FormsModule,
+        InputTextModule,
+        MenubarModule,
+        MenuModule,
+        ReactiveFormsModule,
+        TabViewModule,
+        ToolbarModule,
+        TooltipModule,
+        TreeModule,
+        EffectsModule.forRoot(effects), // eslint-disable-line
+        StoreModule.forRoot(reducers, {
+            metaReducers
+        }),
+        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

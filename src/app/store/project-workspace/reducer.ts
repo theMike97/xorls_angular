@@ -1,5 +1,5 @@
-import { Action, createReducer, on } from "@ngrx/store";
-import { ProjectWorkspaceState } from "./state";
+import { type Action, createReducer, on } from '@ngrx/store';
+import { type ProjectWorkspaceState } from './state';
 import * as actions from './actions';
 
 const initialState: ProjectWorkspaceState = {
@@ -24,18 +24,18 @@ export function reducer(state: ProjectWorkspaceState | undefined, action: Action
     return appReducer(state, action);
 }
 
-//#region reducer functions
+// #region reducer functions
 function setWorkspaceViewportHeight(state: ProjectWorkspaceState, viewportHeight: number): ProjectWorkspaceState {
     return {
         ...state,
         viewportHeight
-    }
+    };
 }
 
 function setWorkspaceViewportWidth(state: ProjectWorkspaceState, viewportWidth: number): ProjectWorkspaceState {
     return {
         ...state,
         viewportWidth
-    }
+    };
 }
-//#endregion
+// #endregion

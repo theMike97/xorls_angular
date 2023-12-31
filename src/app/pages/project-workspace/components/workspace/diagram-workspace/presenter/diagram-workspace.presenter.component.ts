@@ -1,5 +1,5 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { DiagramWorkspace } from 'src/app/models/workspace/diagram-workspace';
+import { type AfterViewInit, ChangeDetectionStrategy, Component, type ElementRef, Input, ViewChild } from '@angular/core';
+import { type DiagramWorkspace } from 'src/app/models/workspace/diagram-workspace';
 
 @Component({
     selector: 'app-diagram-workspace-presenter',
@@ -8,19 +8,16 @@ import { DiagramWorkspace } from 'src/app/models/workspace/diagram-workspace';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DiagramWorkspacePresenterComponent implements AfterViewInit {
-
-    @Input() height: number = 0;
-    @Input() width: number = 0;
+    @Input() height = 0;
+    @Input() width = 0;
     @Input() workspace: DiagramWorkspace;
-    
+
     @ViewChild('diagramWorkspace')
     public canvas: ElementRef<HTMLCanvasElement>;
-    public context: CanvasRenderingContext2D;
 
-    public constructor() {}
+    public context: CanvasRenderingContext2D;
 
     ngAfterViewInit(): void {
         this.context = this.canvas.nativeElement.getContext('2d');
     }
-
 }

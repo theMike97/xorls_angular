@@ -1,22 +1,19 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, type OnInit, Output } from '@angular/core';
+import { type MenuItem } from 'primeng/api';
 
 @Component({
-	selector: 'app-menubar-presenter',
-	templateUrl: './menubar.presenter.component.html',
-	styleUrls: ['./menubar.presenter.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-menubar-presenter',
+    templateUrl: './menubar.presenter.component.html',
+    styleUrls: ['./menubar.presenter.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenubarPresenterComponent implements OnInit {
+    @Output() public openSettingsDialog = new EventEmitter<void>();
 
-	@Output() public openSettingsDialog = new EventEmitter<void>();
+    protected items: MenuItem[];
 
-	protected items: MenuItem[];
-	
-	public constructor() {}
-
-	ngOnInit(): void {
-		this.items = [
+    ngOnInit(): void {
+        this.items = [
             {
                 label: 'File',
                 icon: 'pi pi-file',
@@ -84,7 +81,9 @@ export class MenubarPresenterComponent implements OnInit {
                     {
                         label: 'Preferences',
                         icon: 'pi pi-wrench',
-						command: () => this.openSettingsDialog.emit()
+                        command: () => {
+                            this.openSettingsDialog.emit();
+                        }
                     }
                 ]
             },
@@ -93,6 +92,6 @@ export class MenubarPresenterComponent implements OnInit {
                 icon: 'pi pi-play'
             }
         ];
-	}
+    }
 }
 

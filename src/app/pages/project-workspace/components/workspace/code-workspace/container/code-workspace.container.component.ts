@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { CodeWorkspace } from "src/app/models/workspace/code-workspace";
-import { ProjectWorkspaceState } from "src/app/store/project-workspace/state";
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { CodeWorkspace } from 'src/app/models/workspace/code-workspace';
+import { type ProjectWorkspaceState } from 'src/app/store/project-workspace/state';
 import * as selectors from '../../../../../../store/project-workspace/selectors';
 
 @Component({
@@ -12,16 +12,15 @@ import * as selectors from '../../../../../../store/project-workspace/selectors'
             [workspace]="workspace"
             style="display: block; height: 100%; overflow: hidden;"
         ></app-code-workspace-presenter>
-    `,
+    `
 })
 export class CodeWorkspaceContainerComponent {
-
+    private readonly store = inject(Store<ProjectWorkspaceState>);
     public viewportHeight = this.store.select(selectors.workspaceViewportHeight);
     public viewportWidth = this.store.select(selectors.workspaceViewportWidth);
     public workspace: CodeWorkspace;
 
-    constructor(private store: Store<ProjectWorkspaceState>) {
+    constructor() {
         this.workspace = new CodeWorkspace();
     }
-
 }

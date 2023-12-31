@@ -1,9 +1,9 @@
-import { Action, createReducer, on } from "@ngrx/store";
-import { AppState } from "./state";
+import { type Action, createReducer, on } from '@ngrx/store';
+import { type AppState } from './state';
 import * as actions from './actions';
-import { DialogType } from "src/app/models/dialog";
-import { GridStyle } from "src/app/models/grid-style";
-import { ApplicationPreferences } from "src/app/models/app-preferences";
+import { DialogType } from 'src/app/models/dialog';
+import { GridStyle } from 'src/app/models/grid-style';
+import { type ApplicationPreferences } from 'src/app/models/app-preferences';
 
 const initialState: AppState = {
     appPreferences: {
@@ -42,13 +42,13 @@ const appReducer = createReducer(
         actions.executeAppPreferencesCancel,
         (state): AppState => appPreferencesDialogCancel(state)
     )
-)
+);
 
 export function reducer(state: AppState | undefined, action: Action): AppState {
     return appReducer(state, action);
 }
 
-//#region reducer function
+// #region reducer function
 function setAppPreferencesDialogInfo(state: AppState): AppState {
     return {
         ...state,
@@ -72,9 +72,8 @@ function appPreferencesApply(state: AppState, appPreferences: ApplicationPrefere
         ...state,
         appPreferences,
         dialog: initialState.dialog
-    }
+    };
 }
-
 
 function appPreferencesDialogCancel(state: AppState): AppState {
     return {
@@ -82,4 +81,4 @@ function appPreferencesDialogCancel(state: AppState): AppState {
         dialog: initialState.dialog
     };
 }
-//#endregion
+// #endregion
