@@ -1,4 +1,4 @@
-import { Action, ActionCreator } from "@ngrx/store";
+import { type Action, ActionCreator } from '@ngrx/store';
 
 export enum DialogType {
     NONE = 'NONE',
@@ -7,7 +7,7 @@ export enum DialogType {
     PROGRESS_BAR = 'PROGESS BAR',
     PROGRESS_BAR_MODAL = 'PROGRESS BAR MODAL',
     APP_PREFERENCES = 'APP PREFERENCES'
-};
+}
 
 export interface DialogOption {
     text: string;

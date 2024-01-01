@@ -1,0 +1,52 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": "xo",
+    "overrides": [
+        {
+            "extends": [
+                "xo-typescript"
+            ],
+            "files": [
+                "*.ts",
+                "*.tsx"
+            ],
+            "rules": {
+                "@typescript-eslint/prefer-nullish-coalescing": "off",
+                "capitalized-comments": "off",
+                "@typescript-eslint/object-curly-spacing": ["error", "always"],
+                "@typescript-eslint/consistent-type-definitions": "off",
+                "@typescript-eslint/comma-dangle": ["error", "never"],
+                "@typescript-eslint/indent": ["error", 4],
+                "new-cap": ["error", {
+                    "capIsNew": true,
+                    "capIsNewExceptions": [
+                        "Component",
+                        "Directive",
+                        "HostBinding",
+                        "HostListener",
+                        "Injectable",
+                        "Inject",
+                        "Input",
+                        "Output",
+                        "NgModule",
+                        "Pipe",
+                        "ViewChild",
+                        "ViewChildren"
+                    ],
+                    "newIsCap": true,
+                    "properties": true
+                }],
+                "@typescript-eslint/member-ordering": ["error", { "default": ["private-readonly-field"] }]
+            }
+        }
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+    }
+}

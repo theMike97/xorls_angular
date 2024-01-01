@@ -1,7 +1,7 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { AppState } from "./state";
-import { Dialog } from "src/app/models/dialog";
-import { ApplicationPreferences } from "src/app/models/app-preferences";
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { type AppState } from './state';
+import { type Dialog } from 'src/app/models/dialog';
+import { type ApplicationPreferences } from 'src/app/models/app-preferences';
 
 const getAppState = createFeatureSelector<AppState>('app');
 

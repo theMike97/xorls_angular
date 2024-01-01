@@ -1,13 +1,10 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from "@ngrx/store";
-import { ProjectWorkspaceState } from "./state";
+import { Store } from '@ngrx/store';
+import { type ProjectWorkspaceState } from './state';
 
 @Injectable()
 export class Effects {
-    constructor(
-        private actionStream: Actions,
-        private store: Store<ProjectWorkspaceState>
-        // inject services
-    ) {}
+    private readonly actionStream = inject(Actions);
+    private readonly store = inject(Store<ProjectWorkspaceState>);
 }

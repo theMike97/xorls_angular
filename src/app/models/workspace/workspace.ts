@@ -1,4 +1,4 @@
-import { DiagramWorkspace } from "./diagram-workspace";
+import { DiagramWorkspace } from './diagram-workspace';
 
 export enum WorkspaceType {
     DIAGRAM,
@@ -7,7 +7,7 @@ export enum WorkspaceType {
 
 export abstract class Workspace {
     /**
-     * name: name of the file in the project
+     * Name: name of the file in the project
      */
     name: string;
     width: number;
@@ -19,26 +19,29 @@ export abstract class Workspace {
         this.height = 0;
     }
 
-    public abstract is(type: WorkspaceType): boolean;
     public setWidth(width: number): void {
         this.width = width;
     }
+
     public getWidth(): number {
         return this.width;
     }
+
     public setHeight(height: number): void {
         this.height = height;
     }
+
     public getHeight(): number {
         return this.height;
     }
+
+    public abstract is(type: WorkspaceType): boolean;
 }
 
 export class EmptyWorkspace extends Workspace {
-
     constructor() {
         super();
-        this.name = "";
+        this.name = '';
         this.width = 0;
         this.height = 0;
     }
@@ -46,5 +49,4 @@ export class EmptyWorkspace extends Workspace {
     is(_type: WorkspaceType): boolean {
         return false;
     }
-
 }

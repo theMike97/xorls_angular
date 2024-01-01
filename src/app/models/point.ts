@@ -1,6 +1,6 @@
 export class Point {
-    public x: number = 0;
-    public y: number = 0;
+    public x = 0;
+    public y = 0;
 
     public constructor(x?: number, y?: number) {
         this.x = x;
@@ -11,5 +11,4 @@ export class Point {
         this.x = x;
         this.y = y;
     }
-
 }

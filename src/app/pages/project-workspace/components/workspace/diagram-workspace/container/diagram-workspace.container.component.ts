@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ProjectWorkspaceState } from 'src/app/store/project-workspace/state';
+import { type ProjectWorkspaceState } from 'src/app/store/project-workspace/state';
 import * as selectors from '../../../../../../store/project-workspace/selectors';
 import { DiagramWorkspace } from 'src/app/models/workspace/diagram-workspace';
 
@@ -16,12 +16,12 @@ import { DiagramWorkspace } from 'src/app/models/workspace/diagram-workspace';
     `
 })
 export class DiagramWorkspaceContainerComponent {
-
+    private readonly store = inject(Store<ProjectWorkspaceState>);
     public viewportHeight = this.store.select(selectors.workspaceViewportHeight);
     public viewportWidth = this.store.select(selectors.workspaceViewportWidth);
     public workspace: DiagramWorkspace;
 
-    public constructor(private store: Store<ProjectWorkspaceState>) {
+    public constructor() {
         this.workspace = new DiagramWorkspace();
     }
 
@@ -34,5 +34,4 @@ export class DiagramWorkspaceContainerComponent {
         this.workspace.setWidth(Math.max(viewportWidth, canvasWidth));
         return this.workspace.getWidth();
     }
-    
 }

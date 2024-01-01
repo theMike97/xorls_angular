@@ -1,18 +1,15 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { TreeNode } from 'primeng/api';
+import { Component, type OnInit, ViewEncapsulation } from '@angular/core';
+import { type TreeNode } from 'primeng/api';
 
 @Component({
-  selector: 'app-left-panel',
-  templateUrl: './left-panel-presenter.component.html',
-  styleUrls: ['./left-panel-presenter.component.scss']
+    selector: 'app-left-panel',
+    templateUrl: './left-panel-presenter.component.html',
+    styleUrls: ['./left-panel-presenter.component.scss']
 })
 export class LeftPanelComponent implements OnInit {
-    
     public files: TreeNode[];
 
     public findStr: string;
-
-    public constructor() {}
 
     public ngOnInit(): void {
         this.files = [
@@ -110,5 +107,4 @@ export class LeftPanelComponent implements OnInit {
             }
         ];
     }
-
 }

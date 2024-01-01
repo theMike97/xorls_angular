@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { Action, Store } from "@ngrx/store";
-import { AppState } from "src/app/store/app/state";
+import { ChangeDetectionStrategy, Component, inject, type OnInit } from '@angular/core';
+import { Store, type Action } from '@ngrx/store';
+import { type AppState } from 'src/app/store/app/state';
 import * as selectors from '../../../../../../store/app/selectors';
 import * as actions from '../../../../../../store/app/actions';
-import { ApplicationPreferences } from "src/app/models/app-preferences";
-import { first } from "rxjs";
+import { type ApplicationPreferences } from 'src/app/models/app-preferences';
+import { first } from 'rxjs';
 
 @Component({
     selector: 'app-preferences-dialog-container',
@@ -19,16 +19,16 @@ import { first } from "rxjs";
         ></app-preferences-dialog-presenter>
     `
 })
-export class AppPreferencesDialogContainerComponent implements OnInit{
-
+export class AppPreferencesDialogContainerComponent implements OnInit {
+    private readonly store = inject(Store<AppState>);
+    private readonly appPreferences = this.store.select(selectors.appPreferences);
     public dialogInfo = this.store.select(selectors.globalDialogInfo);
     public appPreferencesSnapshot: ApplicationPreferences;
-    private appPreferences = this.store.select(selectors.appPreferences);
-
-    public constructor(private store: Store<AppState>) {}
 
     ngOnInit(): void {
-        this.appPreferences.pipe(first()).subscribe((preferences) => this.appPreferencesSnapshot = preferences);
+        this.appPreferences.pipe(first()).subscribe(preferences => {
+            this.appPreferencesSnapshot = preferences;
+        });
     }
 
     protected applyPreferencesChanges($event: ApplicationPreferences): void {
@@ -42,5 +42,4 @@ export class AppPreferencesDialogContainerComponent implements OnInit{
     protected dispatchDialogOptionAction($event: Action) {
         this.store.dispatch($event);
     }
-
 }

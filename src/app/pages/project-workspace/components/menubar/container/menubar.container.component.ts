@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { AppState } from "src/app/store/app/state";
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { type AppState } from 'src/app/store/app/state';
 import * as actions from '../../../../../store/app/actions';
 
 @Component({
@@ -13,8 +13,7 @@ import * as actions from '../../../../../store/app/actions';
     `
 })
 export class MenubarContainerComponent {
-
-    public constructor(private store: Store<AppState>) {}
+    private readonly store = inject(Store<AppState>);
 
     public openSettingsDialog(): void {
         this.store.dispatch(actions.openAppPreferencesDialog());

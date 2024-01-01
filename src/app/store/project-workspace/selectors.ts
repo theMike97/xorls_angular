@@ -1,5 +1,5 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { ProjectWorkspaceState } from "./state";
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { type ProjectWorkspaceState } from './state';
 
 const getProjectWorkspaceState = createFeatureSelector<ProjectWorkspaceState>('projectWorkspace');
 

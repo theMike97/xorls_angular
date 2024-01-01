@@ -1,18 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { type ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogPresenterComponent } from './app-preferences-dialog.presenter.component';
+import { AppPreferencesDialogPresenterComponent } from './app-preferences-dialog.presenter.component';
 
 describe('MenubarComponent', () => {
-    let component: DialogPresenterComponent;
-    let fixture: ComponentFixture<DialogPresenterComponent>;
+    let component: AppPreferencesDialogPresenterComponent;
+    let fixture: ComponentFixture<AppPreferencesDialogPresenterComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-        declarations: [ DialogPresenterComponent ]
+            declarations: [AppPreferencesDialogPresenterComponent]
         })
-        .compileComponents();
+            .compileComponents();
 
-        fixture = TestBed.createComponent(DialogPresenterComponent);
+        fixture = TestBed.createComponent(AppPreferencesDialogPresenterComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

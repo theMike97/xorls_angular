@@ -1,9 +1,11 @@
-import { GridStyle } from "./grid-style";
+import { type GridStyle } from './grid-style';
 
 export interface ApplicationPreferences {
+    /* eslint-disable */
     generalSettings: {
 
     };
+    /* eslint-enable */
     diagramWorkspaceSettings: {
         gridStyle: GridStyle;
     };

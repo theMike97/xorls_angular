@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { type ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MenubarPresenterComponent } from './menubar.presenter.component';
 
@@ -8,9 +8,9 @@ describe('MenubarComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-        declarations: [ MenubarPresenterComponent ]
+            declarations: [MenubarPresenterComponent]
         })
-        .compileComponents();
+            .compileComponents();
 
         fixture = TestBed.createComponent(MenubarPresenterComponent);
         component = fixture.componentInstance;
