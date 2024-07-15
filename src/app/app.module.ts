@@ -26,6 +26,7 @@ import { DiagramWorkspaceContainerComponent } from './pages/project-workspace/co
 import { DiagramWorkspacePresenterComponent } from './pages/project-workspace/components/workspace/diagram-workspace/presenter/diagram-workspace.presenter.component';
 import { ParentContainerComponent } from './pages/project-workspace/components/parent-container/parent-container.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PanelMenuModule } from 'primeng/panelmenu';
 
 import { effects } from './store/effects';
 import { reducers } from './store/reducers';
@@ -39,6 +40,8 @@ import { CommonModule } from '@angular/common';
 import { CodeWorkspaceContainerComponent } from './pages/project-workspace/components/workspace/code-workspace/container/code-workspace.container.component';
 import { CodeWorkspacePresenterComponent } from './pages/project-workspace/components/workspace/code-workspace/presenter/code-workspace.presenter.component';
 import { CodeEditorModule } from '@ngstack/code-editor';
+import { ComponentTreeContainerComponent } from './pages/project-workspace/components/left-panel/component-tree/component-tree-container/component-tree-container.component';
+import { ComponentTreePresenterComponent } from './pages/project-workspace/components/left-panel/component-tree/component-tree-presenter/component-tree-presenter.component';
 
 @NgModule({
     declarations: [
@@ -47,6 +50,8 @@ import { CodeEditorModule } from '@ngstack/code-editor';
         AppPreferencesDialogPresenterComponent,
         CodeWorkspaceContainerComponent,
         CodeWorkspacePresenterComponent,
+        ComponentTreeContainerComponent,
+        ComponentTreePresenterComponent,
         DiagramWorkspaceContainerComponent,
         DiagramWorkspacePresenterComponent,
         LeftPanelComponent,
@@ -71,6 +76,7 @@ import { CodeEditorModule } from '@ngstack/code-editor';
         InputTextModule,
         MenubarModule,
         MenuModule,
+        PanelMenuModule,
         ReactiveFormsModule,
         TabViewModule,
         ToolbarModule,
