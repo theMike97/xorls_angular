@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, type OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { type Action } from '@ngrx/store';
 import { type ApplicationPreferences } from 'src/app/models/app-preferences';
 import { type Dialog, DialogType } from 'src/app/models/dialog';

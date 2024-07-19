@@ -1,5 +1,5 @@
 <!-- App Preferences Dialog -->
-<p-dialog header="Application Preferences" [(visible)]="dialogType.APP_PREFERENCES === dialogInfo.type" [draggable]="false" [closable]="false" [maximizable]="true" [style]="{ width: '75vw', height: '75vh' }" [resizable]="false">
+<p-dialog header="Application Preferences" (visible)="dialogType.APP_PREFERENCES === dialogInfo.type" [draggable]="false" [closable]="false" [maximizable]="true" [style]="{ width: '75vw', height: '75vh' }" [resizable]="false">
     <div class="flex flex-row h-full w-full">
         <div class="flex flex-col border-r" style="width: 225px">
             <a class="preferences-nav-link" href="#general-preferences">General</a>
