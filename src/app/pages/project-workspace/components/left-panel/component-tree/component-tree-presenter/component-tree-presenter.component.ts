@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import type { OnInit } from '@angular/core';
-import type { MenuItem } from 'primeng/api';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { type OnInit } from '@angular/core';
+import { type MenuItem } from 'primeng/api';
+import { MenuItemContent } from 'primeng/menu';
 import { ComponentName } from 'src/app/models/components';
 
 @Component({
@@ -10,38 +11,64 @@ import { ComponentName } from 'src/app/models/components';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComponentTreePresenterComponent implements OnInit {
+    @Output() public selectComponent = new EventEmitter<ComponentName>();
+
     protected componentList: MenuItem[];
 
     ngOnInit(): void {
+        // Divide the component categories into separate lists
+        const gateList = [
+            { name: ComponentName.AND, icon: 'pi pi-eraser' },
+            { name: ComponentName.OR, icon: '' },
+            { name: ComponentName.XOR, icon: '' },
+            { name: ComponentName.NOT, icon: '' },
+            { name: ComponentName.NAND, icon: '' },
+            { name: ComponentName.NOR, icon: '' },
+            { name: ComponentName.XNOR, icon: '' }
+        ];
+        const ioList = [
+            { name: ComponentName.INPUT_BIT, icon: '' },
+            { name: ComponentName.OUTPUT_LED, icon: '' },
+            { name: ComponentName.SEVEN_SEG, icon: '' },
+            { name: ComponentName.CLOCK, icon: '' },
+            { name: ComponentName.SPLITTER, icon: '' },
+            { name: ComponentName.JOINER, icon: '' }
+        ];
+        const miscList = [
+            { name: ComponentName.TEXT, icon: '' }
+        ];
+
+        // Populate list of all components by category
         this.componentList = [
             {
                 label: 'Gates',
-                items: [
-                    { label: ComponentName.AND, icon: 'pi pi-eraser' },
-                    { label: ComponentName.OR },
-                    { label: ComponentName.XOR },
-                    { label: ComponentName.NOT },
-                    { label: ComponentName.NAND },
-                    { label: ComponentName.NOR },
-                    { label: ComponentName.XNOR }
-                ]
+                items: gateList.map(gate => ({
+                    label: gate.name,
+                    icon: gate.icon,
+                    command: () => {
+                        this.selectComponent.emit(gate.name);
+                    }
+                }))
             },
             {
                 label: 'I/O',
-                items: [
-                    { label: ComponentName.INPUT_BIT },
-                    { label: ComponentName.OUTPUT_LED },
-                    { label: ComponentName.SEVEN_SEG },
-                    { label: ComponentName.CLOCK },
-                    { label: ComponentName.SPLITTER },
-                    { label: ComponentName.JOINER }
-                ]
+                items: ioList.map(io => ({
+                    label: io.name,
+                    icon: io.icon,
+                    command: () => {
+                        this.selectComponent.emit(io.name);
+                    }
+                }))
             },
             {
                 label: 'Misc',
-                items: [
-                    { label: ComponentName.TEXT }
-                ]
+                items: miscList.map(misc => ({
+                    label: misc.name,
+                    icon: misc.icon,
+                    command: () => {
+                        this.selectComponent.emit(misc.name);
+                    }
+                }))
             }
         ];
     }

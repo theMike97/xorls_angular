@@ -34,32 +34,38 @@ export enum NodeFlowDirection {
 }
 
 export abstract class Node {
+    private _position: Point;
+    private _value: number;
+    private _direction: NodeFlowDirection;
+
     constructor(position: Point) {
-        this.position = position;
+        this._position = position;
+        this._value = undefined;
+        this._direction = undefined;
     }
 
     public get value(): number {
-        return this.value;
+        return this._value;
     }
 
     public set value(value: number) {
-        this.value = value;
+        this._value = value;
     }
 
     public get position(): Point {
-        return this.position;
+        return this._position;
     }
 
     public set position(position: Point) {
-        this.position = position;
+        this._position = position;
     }
 
     public get direction(): NodeFlowDirection {
-        return this.direction;
+        return this._direction;
     }
 
     public set direction(direction: NodeFlowDirection) {
-        this.direction = direction;
+        this._direction = direction;
     }
 }
 
@@ -83,18 +89,20 @@ export class BitNode extends Node {
 }
 
 export class BusNode extends Node {
+    private _length: number;
+
     constructor(position: Point, length: number) {
         super(position);
-        this.length = length;
+        this._length = length;
         this.value = 0;
     }
 
     public get length(): number {
-        return this.length;
+        return this._length;
     }
 
     public set length(length: number) {
-        this.length = length;
+        this._length = length;
     }
 
     public override get value(): number {
@@ -112,46 +120,94 @@ export class BusNode extends Node {
     }
 }
 
+// state model for selected component
+export interface SelectedComponent {
+    ghost: boolean;
+    component: Component;
+}
+
 export abstract class Component {
+    private _name: ComponentName;
+    private _orientation: ComponentOrientation;
+    private _position: Point;
+    private _nodes: Node[];
+
     constructor(position: Point, nodes: Node[]) {
-        this.name = null;
-        this.orientation = ComponentOrientation.EAST;
-        this.position = position;
-        this.nodes = nodes;
+        this._name = null;
+        this._orientation = ComponentOrientation.EAST;
+        this._position = position;
+        this._nodes = nodes;
     }
 
     public get name(): ComponentName {
-        return this.name;
+        return this._name;
     }
 
     public set name(name: ComponentName) {
-        this.name = name;
+        this._name = name;
     }
 
     public get orientation(): ComponentOrientation {
-        return this.orientation;
+        return this._orientation;
     }
 
     public set orientation(orientation: ComponentOrientation) {
-        this.orientation = orientation;
+        this._orientation = orientation;
     }
 
     public get position(): Point {
-        return this.position;
+        return this._position;
     }
 
     public set position(position: Point) {
-        this.position = position;
+        this._position = position;
     }
 
     public get nodes(): Node[] {
-        return this.nodes;
+        return this._nodes;
     }
 
     public set nodes(nodes: Node[]) {
-        this.nodes = nodes;
+        this._nodes = nodes;
     }
 }
+
+/* eslint-disable @typescript-eslint/no-extraneous-class */
+export abstract class ComponentFactory {
+    public static createComponent(componentType: ComponentName): Component {
+        switch (componentType) {
+            case ComponentName.NOT:
+                return new NotGate(null, null);
+            case ComponentName.AND:
+                return new AndGate(null, null);
+            case ComponentName.OR:
+                return new OrGate(null, null);
+            case ComponentName.XOR:
+                return new XorGate(null, null);
+            case ComponentName.NAND:
+                return new NandGate(null, null);
+            case ComponentName.NOR:
+                return new NorGate(null, null);
+            case ComponentName.INPUT_BIT:
+                return new InputBit(null, null);
+            case ComponentName.OUTPUT_LED:
+                return new OutputLed(null, null);
+            case ComponentName.SEVEN_SEG:
+                return new SevenSegmentDisplay(null, null);
+            case ComponentName.CLOCK:
+                return new ClockGenerator(null, null);
+            case ComponentName.JOINER:
+                return new BusJoiner(null, null);
+            case ComponentName.SPLITTER:
+                return new BusSplitter(null, null);
+            case ComponentName.TEXT:
+                return new Text(null, null);
+            default:
+                return null;
+        }
+    }
+}
+/* eslint-enable @typescript-eslint/no-extraneous-class */
 
 // Gates
 export class NotGate extends Component {
