@@ -23,8 +23,8 @@ const appReducer = createReducer(
 
     // Workspace reducers
     on(
-        actions.workspaceViewportHeight,
-        (state, { height }): ProjectWorkspaceState => setWorkspaceViewportHeight(state, height)
+        actions.workspaceCanvasHeight,
+        (state, { height }): ProjectWorkspaceState => setCanvasHeight(state, height)
     ),
     on(
         actions.workspaceViewportWidth,
@@ -55,17 +55,17 @@ function setComponentPanelSelectedComponent(state: ProjectWorkspaceState, compon
 // #endregion
 
 // #region workspace reducer functions
-function setWorkspaceViewportHeight(state: ProjectWorkspaceState, viewportHeight: number): ProjectWorkspaceState {
+function setCanvasHeight(state: ProjectWorkspaceState, canvasHeight: number): ProjectWorkspaceState {
     return {
         ...state,
-        viewportHeight
+        canvasHeight
     };
 }
 
-function setWorkspaceViewportWidth(state: ProjectWorkspaceState, viewportWidth: number): ProjectWorkspaceState {
+function setCanvasWidth(state: ProjectWorkspaceState, canvasWidth: number): ProjectWorkspaceState {
     return {
         ...state,
-        viewportWidth
+        canvasWidth
     };
 }
 

@@ -1,37 +1,48 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { type AfterViewInit, ChangeDetectionStrategy, Component, type ElementRef, Inject, inject, Input, type OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { type ProjectWorkspaceState } from 'src/app/store/project-workspace/state';
-import * as selectors from '../../../../../../store/project-workspace/selectors';
 import { DiagramWorkspace } from 'src/app/models/workspace/diagram-workspace';
+import * as actions from '../../../../../../store/project-workspace/actions';
+import * as selectors from '../../../../../../store/project-workspace/selectors';
+import { DrawingService, DRAWING_SERVICE } from '../../../../../../services/drawing/drawing.service';
 
 @Component({
     selector: 'app-diagram-workspace-container',
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
         <app-diagram-workspace-presenter
-            [height]="adjustedCanvasHeight(viewportHeight | async, this.workspace.getHeight())"
-            [width]="adjustedCanvasWidth(viewportWidth | async, this.workspace.getWidth())"
+            [height]="$canvasHeight | async"
+            [width]="$canvasWidth | async"
             [workspace]="workspace"
         ></app-diagram-workspace-presenter>
     `
 })
-export class DiagramWorkspaceContainerComponent {
+export class DiagramWorkspaceContainerComponent implements AfterViewInit, OnDestroy {
     private readonly store = inject(Store<ProjectWorkspaceState>);
-    public viewportHeight = this.store.select(selectors.workspaceViewportHeight);
-    public viewportWidth = this.store.select(selectors.workspaceViewportWidth);
+    private readonly appWorkspaceResizeObserver: ResizeObserver;
     public workspace: DiagramWorkspace;
 
-    public constructor() {
+    // TODO: refactor so that canvas width is stored in the passed in workspace object and viewport size is in the state.
+    protected $canvasHeight = this.store.select(selectors.workspaceCanvasHeight);
+    protected $canvasWidth  = this.store.select(selectors.workspaceCanvasWidth);
+
+    @Input() parentElement: ElementRef;
+
+    public constructor(
+        @Inject(DRAWING_SERVICE) private drawingService: DrawingService
+    ) {
         this.workspace = new DiagramWorkspace();
+        this.appWorkspaceResizeObserver = new ResizeObserver((resizeEntries: ResizeObserverEntry[]) => {
+            this.store.dispatch(actions.workspaceViewportHeightUpdated({ height: resizeEntries[0].contentRect.height }));
+            this.store.dispatch(actions.workspaceViewportWidthUpdated({ width: resizeEntries[0].contentRect.width }));
+        });
     }
 
-    adjustedCanvasHeight(viewportHeight: number, canvasHeight: number): number {
-        this.workspace.setHeight(Math.max(viewportHeight, canvasHeight));
-        return this.workspace.getHeight();
+    ngAfterViewInit(): void {
+        this.appWorkspaceResizeObserver.observe(this.parentElement.nativeElement);
     }
 
-    adjustedCanvasWidth(viewportWidth: number, canvasWidth: number): number {
-        this.workspace.setWidth(Math.max(viewportWidth, canvasWidth));
-        return this.workspace.getWidth();
+    ngOnDestroy(): void {
+        this.appWorkspaceResizeObserver.unobserve(this.parentElement.nativeElement);
     }
 }

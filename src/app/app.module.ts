@@ -42,6 +42,7 @@ import { CodeWorkspacePresenterComponent } from './pages/project-workspace/compo
 import { CodeEditorModule } from '@ngstack/code-editor';
 import { ComponentTreeContainerComponent } from './pages/project-workspace/components/left-panel/component-tree/component-tree-container/component-tree-container.component';
 import { ComponentTreePresenterComponent } from './pages/project-workspace/components/left-panel/component-tree/component-tree-presenter/component-tree-presenter.component';
+import { ServicesModule } from './services/services.module';
 
 @NgModule({
     declarations: [
@@ -86,6 +87,7 @@ import { ComponentTreePresenterComponent } from './pages/project-workspace/compo
         StoreModule.forRoot(reducers, {
             metaReducers
         }),
+        ServicesModule,
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
     ],
     providers: [],

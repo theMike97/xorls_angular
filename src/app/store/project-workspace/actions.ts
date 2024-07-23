@@ -9,3 +9,9 @@ export const componentPanelSelectComponent = createAction('select a component fr
 export const workspaceViewportHeight = createAction('set app workspace viewport height', props<{ height: number }>());
 export const workspaceViewportWidth = createAction('set app workspace viewport width', props<{ width: number }>());
 export const workspaceSelectComponent = createAction('Select a component in the workspace', props<{ component: Component }>());
+export const workspaceViewportHeightUpdated     = createAction('workspace viewport height update detected', props<{ height: number }>());
+export const workspaceViewportWidthUpdated      = createAction('workspace viewport width update detected', props<{ width: number }>());
+export const workspaceCanvasHeight              = createAction('update diagram workspace canvas height', props<{ height: number }>());
+export const workspaceCanvasWidth               = createAction('update diagram workspace canvas width', props<{ width: number }>());
+
+export const redraw                             = createAction('call redraw in drawing service');

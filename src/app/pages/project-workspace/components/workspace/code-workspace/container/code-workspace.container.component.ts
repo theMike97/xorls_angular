@@ -16,8 +16,8 @@ import * as selectors from '../../../../../../store/project-workspace/selectors'
 })
 export class CodeWorkspaceContainerComponent {
     private readonly store = inject(Store<ProjectWorkspaceState>);
-    public viewportHeight = this.store.select(selectors.workspaceViewportHeight);
-    public viewportWidth = this.store.select(selectors.workspaceViewportWidth);
+    public viewportHeight = this.store.select(selectors.workspaceCanvasHeight);
+    public viewportWidth = this.store.select(selectors.workspaceCanvasWidth);
     public workspace: CodeWorkspace;
 
     constructor() {
