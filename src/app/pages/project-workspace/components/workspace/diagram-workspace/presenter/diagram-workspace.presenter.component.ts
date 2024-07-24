@@ -1,4 +1,4 @@
-import { type AfterViewInit, ChangeDetectionStrategy, Component, type ElementRef, Inject, Input, ViewChild } from '@angular/core';
+import { type AfterViewInit, ChangeDetectionStrategy, Component, type ElementRef, Inject, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { type DiagramWorkspace } from 'src/app/models/workspace/diagram-workspace';
 import { DRAWING_SERVICE, DrawingService } from 'src/app/services/drawing/drawing.service';
 
@@ -11,7 +11,7 @@ import { DRAWING_SERVICE, DrawingService } from 'src/app/services/drawing/drawin
 export class DiagramWorkspacePresenterComponent implements AfterViewInit {
     @Input() height: number;
     @Input() width: number;
-    @Input() workspace: DiagramWorkspace;
+    @Output() public canvasContext = new EventEmitter<CanvasRenderingContext2D>();
 
     @ViewChild('diagramWorkspace', { static: false }) 
     public canvas: ElementRef<HTMLCanvasElement>;
@@ -23,7 +23,8 @@ export class DiagramWorkspacePresenterComponent implements AfterViewInit {
 
     ngAfterViewInit(): void {
         this.context = this.canvas.nativeElement.getContext('2d');
+        this.canvasContext.emit(this.context);
         this.context.fillRect(0, 0, 150, 75);
-        // this.drawingService.redraw();
+        this.drawingService.redraw(this.context);
     }
 }

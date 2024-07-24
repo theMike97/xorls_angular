@@ -1,4 +1,4 @@
-import { type AfterViewInit, ChangeDetectionStrategy, Component, type ElementRef, Inject, inject, Input, type OnDestroy } from '@angular/core';
+import { type AfterViewInit, ChangeDetectionStrategy, Component, type ElementRef, Inject, inject, Input, type OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { type ProjectWorkspaceState } from 'src/app/store/project-workspace/state';
 import { DiagramWorkspace } from 'src/app/models/workspace/diagram-workspace';
@@ -13,7 +13,7 @@ import { DrawingService, DRAWING_SERVICE } from '../../../../../../services/draw
         <app-diagram-workspace-presenter
             [height]="$canvasHeight | async"
             [width]="$canvasWidth | async"
-            [workspace]="workspace"
+            (canvasContext)="setCanvasContext($event)"
         ></app-diagram-workspace-presenter>
     `
 })
@@ -31,10 +31,10 @@ export class DiagramWorkspaceContainerComponent implements AfterViewInit, OnDest
     public constructor(
         @Inject(DRAWING_SERVICE) private drawingService: DrawingService
     ) {
-        this.workspace = new DiagramWorkspace();
+        // this.workspace = new DiagramWorkspace();
         this.appWorkspaceResizeObserver = new ResizeObserver((resizeEntries: ResizeObserverEntry[]) => {
-            this.store.dispatch(actions.workspaceViewportHeightUpdated({ height: resizeEntries[0].contentRect.height }));
-            this.store.dispatch(actions.workspaceViewportWidthUpdated({ width: resizeEntries[0].contentRect.width }));
+            this.store.dispatch(actions.workspaceViewportHeight({ height: resizeEntries[0].contentRect.height }));
+            this.store.dispatch(actions.workspaceViewportWidth({ width: resizeEntries[0].contentRect.width }));
         });
     }
 
@@ -44,5 +44,9 @@ export class DiagramWorkspaceContainerComponent implements AfterViewInit, OnDest
 
     ngOnDestroy(): void {
         this.appWorkspaceResizeObserver.unobserve(this.parentElement.nativeElement);
+    }
+
+    setCanvasContext(context: CanvasRenderingContext2D) {
+        this.store.dispatch(actions.workspaceCanvasContext({ context }));
     }
 }

@@ -16,33 +16,29 @@ export class Effects {
         @Inject(DRAWING_SERVICE) private drawingService: DrawingService
     ) {}
 
-    public detectDiagramViewportHeightUpdate = createEffect(() => this.actionStream.pipe(
+    public updateDiagramViewportHeight = createEffect(() => this.actionStream.pipe(
         ofType(
-            actions.workspaceViewportHeightUpdated,
+            actions.workspaceViewportHeight
         ),
         withLatestFrom(
             this.store.select(selectors.workspaceCanvasHeight)
         ),
-        tap(([action, currentViewportHeight]) => {
-            if (currentViewportHeight < action.height) {
-                this.store.dispatch(actions.workspaceCanvasHeight({ height: action.height }));
-            }
-        })
-    ), { dispatch: false });
+        map(([action, currentCanvasHeight]) =>
+            actions.workspaceCanvasHeight({ height: Math.max(action.height, currentCanvasHeight) })
+        )
+    ));
 
-    public detectDiagramViewportWidtheUpdate = createEffect(() => this.actionStream.pipe(
+    public updateDiagramViewportWidth = createEffect(() => this.actionStream.pipe(
         ofType(
-            actions.workspaceViewportWidthUpdated,
+            actions.workspaceViewportWidth
         ),
         withLatestFrom(
             this.store.select(selectors.workspaceCanvasWidth)
         ),
-        tap(([action, currentViewportWidth]) => {
-            if (currentViewportWidth < action.width) {
-                this.store.dispatch(actions.workspaceCanvasWidth({ width: action.width }));
-            }
-        })
-    ), { dispatch: false });
+        map(([action, currentCanvasWidth]) =>
+            actions.workspaceCanvasWidth({ width: Math.max(action.width, currentCanvasWidth) })
+        )
+    ));
 
     public updateDiagramCanvasHeight = createEffect(() => this.actionStream.pipe(
         ofType(
@@ -64,10 +60,14 @@ export class Effects {
 
     public redrawCanvas = createEffect(() => this.actionStream.pipe(
         ofType(
+            actions.workspaceCanvasContext,
             actions.redraw
         ),
-        tap(() => {
-            this.drawingService.redraw()
+        withLatestFrom(
+            this.store.select(selectors.workspaceCanvasContext)
+        ),
+        tap(([action, context]) => {
+            this.drawingService.redraw(context);
         })
     ), { dispatch: false });
 }

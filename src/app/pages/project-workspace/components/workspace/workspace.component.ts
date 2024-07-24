@@ -1,10 +1,11 @@
 import { type AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, type OnDestroy, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { type Workspace, WorkspaceType } from 'src/app/models/workspace/workspace';
-import { workspaceFactory } from 'src/app/models/workspace/workspace-factory';
+import { Workspace, WorkspaceType } from 'src/app/models/workspace/workspace';
 import { type ProjectWorkspaceState } from 'src/app/store/project-workspace/state';
 import * as actions from '../../../../store/project-workspace/actions';
 import * as selectors from '../../../../store/project-workspace/selectors';
+import { DiagramWorkspace } from 'src/app/models/workspace/diagram-workspace';
+import { CodeWorkspace } from 'src/app/models/workspace/code-workspace';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class WorkspaceComponent {
     public workspaceType: typeof WorkspaceType = WorkspaceType;
 
     protected workspaceTabs: Workspace[] = [
-        workspaceFactory(WorkspaceType.DIAGRAM),
-        workspaceFactory(WorkspaceType.CODE)
+        new DiagramWorkspace(),
+        new CodeWorkspace()
     ];
 }
